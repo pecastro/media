@@ -533,6 +533,7 @@ impl GStreamerWebRtcController {
                 None
             })?;
 
+        println!("PEC DBG: thread->{:?}, HERE {}:{}",thread,file!(),line!());
         let pipe_clone = self.pipeline.clone();
         let thread = Arc::new(Mutex::new(self.thread.clone()));
         self.webrtc.connect("pad-added", false, move |values| {
@@ -669,6 +670,7 @@ pub fn construct(
         data_channels: Arc::new(Mutex::new(HashMap::new())),
         next_data_channel_id: Arc::new(AtomicUsize::new(0)),
     };
+    println!("PEC DBG: controller->{:?} HERE {}:{}",controller,file!(),line!());
     controller.start_pipeline()?;
     Ok(controller)
 }
